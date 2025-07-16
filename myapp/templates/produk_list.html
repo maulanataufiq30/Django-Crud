@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<a href="{% url 'produk_create' %}" class="btn btn-success mb-4">+ Tambah Produk</a>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Tanggal</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produk in produks %}
+            <tr>
+                <td>{{ produk.nama }}</td>
+                <td>Rp{{ produk.harga }}</td>
+                <td>{{ produk.created_at|date:"d M Y" }}</td>
+                <td>
+                    <a href="{% url 'produk_update' produk.pk %}" class="btn btn-sm btn-warning btn-action">✏️ Edit</a>
+                    <a href="{% url 'produk_delete' produk.pk %}" class="btn btn-sm btn-danger btn-action">🗑️ Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

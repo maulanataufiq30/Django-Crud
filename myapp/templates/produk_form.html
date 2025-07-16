@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h2 class="mb-4">{% if object %}Edit Produk{% else %}Tambah Produk Baru{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <a href="{% url 'produk_list' %}" class="btn btn-secondary">Batal</a>
+    </div>
+</form>
+{% endblock %}
